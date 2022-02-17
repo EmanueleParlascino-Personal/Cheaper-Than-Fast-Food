@@ -9,8 +9,8 @@ export default function Home() {
   const [costs, setCosts] = useState([0.5, 0.8, 0.1, 0.5]);
 
   function handleSubmit(){
-    e.preventDefault();
-    setCosts(prevArray =>[...prevArray, parseFloat(e.target.value)])
+
+    // add all form values to the array
   }
 
   return (
@@ -24,13 +24,14 @@ export default function Home() {
         {`h1 {align: center}`}
       </style>
      <main>
-
-        <input type={'number'} placeholder = {"quantity"} onChange={e => {
-          if(!isNaN(e.target.value)){
-            setQuantity(prevArray =>[...prevArray, parseFloat(e.target.value)]), 
-            console.log(quantityData)}}}/>
-        <input type={'number'} placeholder = {"cost"}  onChange={e => setCosts(prevArray =>[...prevArray, parseFloat(e.target.value)])}/>
-        <button type="submit" onSubmit={handleSubmit()}>Submit</button>
+        <form>
+          <input type={'number'} placeholder = {"quantity"} onChange={e => {
+            if(!isNaN(e.target.value)){
+              setQuantity(prevArray =>[...prevArray, parseFloat(e.target.value)]), 
+              console.log(quantityData)}}}/>
+          <input type={'number'} placeholder = {"cost"}  onChange={e => setCosts(prevArray =>[...prevArray, parseFloat(e.target.value)])}/>
+          <button type="submit" onSubmit={handleSubmit()}>Submit</button>
+        </form>
         <Calculator data = {quantityData} costs = {costs}/>
      </main>
 
