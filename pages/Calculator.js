@@ -3,6 +3,8 @@ function Calculator(props){
     var costs = props.costs;
     var totalCost = 0;
 
+    console.log(data)
+
     
 
     for (var i= 0; i<=data.length -1; i++){

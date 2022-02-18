@@ -5,12 +5,63 @@ import { useState } from 'react'
 
 
 export default function Home() {
-  const [quantityData, setQuantity] = useState([10, 2, 35, 4]);
+  const [quantityData, setQuantity] = useState([{ingredient: "", quantity: 0, cost: 0}]);
   const [costs, setCosts] = useState([0.5, 0.8, 0.1, 0.5]);
 
+  
   function handleSubmit(){
 
     // add all form values to the array
+  }
+
+
+  /*i need to fix the process of splitting the array, they're updating normally but the calculator receives undefined*/
+
+  function splitArrayQuantity(array){
+    const quantityArray = []
+    for(var i = 0; i <= array.length; i++ ){
+      quantityArray[i] = array.quantity;
+    }
+    return quantityArray
+  }
+
+  function splitArrayCosts(array){
+    const costArray = []
+    for(var i = 0; i <= array.length; i++ ){
+      costArray[i] = array.cost;
+    }
+    return costArray
+  }
+  const AddQuantity = () =>{
+    setQuantity([...quantityData, {ingredient: "", quantity: 0, cost: 0}])
+  }
+
+  const Remove = (index) =>{
+    const list = [...quantityData]
+    list.splice(index, 1)
+    setQuantity(list)
+  }
+
+  //console.log(quantityData)
+  const handleChangeQuantity = (e, index) => {
+    const {name, value} = e.target
+    const list = [...quantityData]
+    list[index][name] = value
+    setQuantity(list) 
+  }
+
+  const handleChangeCost = (e, index) => {
+    const {name, value} = e.target
+    const list = [...quantityData]
+    list[index][name] = value
+    setQuantity(list) 
+  }
+
+  const handleChangeIngredient = (e, index) => {
+    const {name, value} = e.target
+    const list = [...quantityData]
+    list[index][name] = value
+    setQuantity(list) 
   }
 
   return (
@@ -25,14 +76,25 @@ export default function Home() {
       </style>
      <main>
         <form>
-          <input type={'number'} placeholder = {"quantity"} onChange={e => {
-            if(!isNaN(e.target.value)){
-              setQuantity(prevArray =>[...prevArray, parseFloat(e.target.value)]), 
-              console.log(quantityData)}}}/>
-          <input type={'number'} placeholder = {"cost"}  onChange={e => setCosts(prevArray =>[...prevArray, parseFloat(e.target.value)])}/>
+          {quantityData.map((singleQuantity, index) =>(
+            <div key = {index}>
+              <input name = "ingredient" type = "text" placeholder='Ingredient' required value = {singleQuantity.ingredient} onChange = {(e) => handleChangeIngredient(e, index )}/>
+              <input  type="number" placeholder='quantity'
+                      name = "quantity"
+                      required value = {singleQuantity.quantity}
+                      onChange = {(e) => handleChangeQuantity(e, index )}/>
+              <input type="number" placeholder = "cost" name = "cost" required value = {singleQuantity.cost} onChange = {(e) => handleChangeCost(e, index )} />        
+              {quantityData.length - 1 === index &&
+              <button onClick={AddQuantity}> Add </button> 
+               }                                                                      
+              <button onClick={ () => Remove(index)}> Remove</button>                                                                      
+            </div>
+          ))}
+          
+          
           <button type="submit" onSubmit={handleSubmit()}>Submit</button>
         </form>
-        <Calculator data = {quantityData} costs = {costs}/>
+        <Calculator data = {splitArrayQuantity(quantityData)} costs = {splitArrayCosts(quantityData)}/>
      </main>
 
     </div>
