@@ -6,32 +6,7 @@ import { useState } from 'react'
 
 export default function Home() {
   const [quantityData, setQuantity] = useState([{ingredient: "", quantity: 0, cost: 0}]);
-  const [costs, setCosts] = useState([0.5, 0.8, 0.1, 0.5]);
-
-  
-  function handleSubmit(){
-
-    // add all form values to the array
-  }
-
-
-  /*i need to fix the process of splitting the array, they're updating normally but the calculator receives undefined*/
-
-  function splitArrayQuantity(array){
-    const quantityArray = []
-    for(var i = 0; i <= array.length; i++ ){
-      quantityArray[i] = array.quantity;
-    }
-    return quantityArray
-  }
-
-  function splitArrayCosts(array){
-    const costArray = []
-    for(var i = 0; i <= array.length; i++ ){
-      costArray[i] = array.cost;
-    }
-    return costArray
-  }
+    
   const AddQuantity = () =>{
     setQuantity([...quantityData, {ingredient: "", quantity: 0, cost: 0}])
   }
@@ -42,7 +17,6 @@ export default function Home() {
     setQuantity(list)
   }
 
-  //console.log(quantityData)
   const handleChangeQuantity = (e, index) => {
     const {name, value} = e.target
     const list = [...quantityData]
@@ -90,11 +64,8 @@ export default function Home() {
               <button onClick={ () => Remove(index)}> Remove</button>                                                                      
             </div>
           ))}
-          
-          
-          <button type="submit" onSubmit={handleSubmit()}>Submit</button>
         </form>
-        <Calculator data = {splitArrayQuantity(quantityData)} costs = {splitArrayCosts(quantityData)}/>
+        <Calculator data = {quantityData}/>
      </main>
 
     </div>
