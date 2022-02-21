@@ -10,7 +10,7 @@ export default function Home() {
   const AddQuantity = () =>{
     setQuantity([...quantityData, {ingredient: "", quantity: 0, cost: 0}])
   }
-
+  /* Start to look into an API to get a stand in value for products*/
   const Remove = (index) =>{
     const list = [...quantityData]
     list.splice(index, 1)
@@ -51,17 +51,25 @@ export default function Home() {
      <main>
         <form>
           {quantityData.map((singleQuantity, index) =>(
-            <div key = {index}>
-              <input name = "ingredient" type = "text" placeholder='Ingredient' required value = {singleQuantity.ingredient} onChange = {(e) => handleChangeIngredient(e, index )}/>
-              <input  type="number" placeholder='quantity'
-                      name = "quantity"
-                      required value = {singleQuantity.quantity}
-                      onChange = {(e) => handleChangeQuantity(e, index )}/>
-              <input type="number" placeholder = "cost" name = "cost" required value = {singleQuantity.cost} onChange = {(e) => handleChangeCost(e, index )} />        
-              {quantityData.length - 1 === index &&
-              <button onClick={AddQuantity}> Add </button> 
-               }                                                                      
-              <button onClick={ () => Remove(index)}> Remove</button>                                                                      
+            <div key = {index} class = "inputs">
+              <div class = "row">
+                <span>
+                  <input name = "ingredient" type = "text" class="basic-slide" id="name" placeholder='Banana' required value = {singleQuantity.ingredient} onChange = {(e) => handleChangeIngredient(e, index )}/><label for="name">Name</label>
+                </span>
+                <span>
+                  <input  type="number" placeholder='xg'
+                          name = "quantity" class="gate" id="class"
+                          required value = {singleQuantity.quantity}
+                          onChange = {(e) => handleChangeQuantity(e, index )}/> <label for="name">Quantity</label>
+                </span>
+                <span>        
+                  <input type="number" class="skinny" id="english" placeholder = "cost" name = "cost" required value = {singleQuantity.cost} onChange = {(e) => handleChangeCost(e, index )} /><label for="name">Cost</label>
+                </span>     
+                {quantityData.length - 1 === index &&
+                <button onClick={AddQuantity}> Add </button> 
+                }                                                                      
+                <button onClick={ () => Remove(index)}> Remove</button>
+              </div>                                                                      
             </div>
           ))}
         </form>
