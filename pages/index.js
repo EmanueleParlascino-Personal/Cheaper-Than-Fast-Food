@@ -84,3 +84,17 @@ export default function Home() {
 
 
 
+/*https://developer.walmart.com/api/us/mp/items#operation/getSearchResult <- THIS IS KEY 
+
+Recipe                  Resources
+
+Ingredients Amount  |    Cost   Amount
+
+XXXX        100g          2£     1kg
+
+Features Ideas:
+Extract data from a recipe
+find recipe with a list of ingredients
+Have an online inventory of all your groceries
+Nutrional value calculator for dishes
+*/
