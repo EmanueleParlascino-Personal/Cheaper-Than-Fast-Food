@@ -51,19 +51,19 @@ export default function Home() {
      <main>
         <form>
           {quantityData.map((singleQuantity, index) =>(
-            <div key = {index} class = "inputs">
-              <div class = "row">
+            <div key = {index} className = "inputs">
+              <div className = "row">
                 <span>
-                  <input name = "ingredient" type = "text" class="basic-slide" id="name" placeholder='Banana' required value = {singleQuantity.ingredient} onChange = {(e) => handleChangeIngredient(e, index )}/><label for="name">Name</label>
+                  <input name = "ingredient" type = "text" className="basic-slide" id="name" placeholder='Banana' required value = {singleQuantity.ingredient} onChange = {(e) => handleChangeIngredient(e, index )}/><label htmlFor="name">Name</label>
                 </span>
                 <span>
                   <input  type="number" placeholder='xg'
-                          name = "quantity" class="gate" id="class"
+                          name = "quantity" className="gate" id="class"
                           required value = {singleQuantity.quantity}
-                          onChange = {(e) => handleChangeQuantity(e, index )}/> <label for="name">Quantity</label>
+                          onChange = {(e) => handleChangeQuantity(e, index )}/> <label htmlFor="name">Quantity</label>
                 </span>
                 <span>        
-                  <input type="number" class="skinny" id="english" placeholder = "cost" name = "cost" required value = {singleQuantity.cost} onChange = {(e) => handleChangeCost(e, index )} /><label for="name">Cost</label>
+                  <input type="number" className="skinny" id="english" placeholder = "cost" name = "cost" required value = {singleQuantity.cost} onChange = {(e) => handleChangeCost(e, index )} /><label htmlFor="name">Cost</label>
                 </span>     
                 {quantityData.length - 1 === index &&
                 <button onClick={AddQuantity}> Add </button> 
@@ -85,6 +85,8 @@ export default function Home() {
 
 
 /*https://developer.walmart.com/api/us/mp/items#operation/getSearchResult <- THIS IS KEY 
+
+https://www.youtube.com/watch?v=VQraviuwbzU
 
 Recipe                  Resources
 

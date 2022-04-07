@@ -1,4 +1,4 @@
-function Calculator(props){
+export default function Calculator(props){
     var data = props.data;
     var totalCost = 0;
 
@@ -17,5 +17,3 @@ function Calculator(props){
         </div>
     )
 }
-
-export default Calculator
