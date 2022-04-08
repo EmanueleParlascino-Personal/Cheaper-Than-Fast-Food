@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Calculator from './Calculator'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 export default function Home() {
@@ -28,7 +28,8 @@ export default function Home() {
     const {name, value} = e.target
     const list = [...quantityData]
     list[index][name] = value
-    setQuantity(list) 
+    setQuantity(list)
+    console.log(JSON.parse(localStorage.getItem('data'))) 
   }
 
   const handleChangeIngredient = (e, index) => {
@@ -37,6 +38,9 @@ export default function Home() {
     list[index][name] = value
     setQuantity(list) 
   }
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(quantityData));
+  }, [quantityData]);
 
   return (
     <div className={styles.container}>
@@ -49,7 +53,7 @@ export default function Home() {
         {`h1 {align: center}`}
       </style>
      <main>
-        <form>
+        <div className='input-container'>
           {quantityData.map((singleQuantity, index) =>(
             <div key = {index} className = "inputs">
               <div className = "row">
@@ -72,7 +76,7 @@ export default function Home() {
               </div>                                                                      
             </div>
           ))}
-        </form>
+        </div>
         <Calculator data = {quantityData}/>
      </main>
 

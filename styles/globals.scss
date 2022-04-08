@@ -13,7 +13,12 @@ body {
   color: #fff;
   background: #efefef;
 }
-inputs{
+
+.input-container{
+  display: flex;
+  margin-top: 50px;
+}
+.inputs{
  margin-right: 20%; 
 }
 @mixin epic-sides() { // https://codepen.io/MichaelArestad/pen/qltuk
@@ -27,7 +32,7 @@ inputs{
         top: 0;
         left: -5000px;
         height: 100%;
-        width: 15000px;
+        width: 50vh;
         z-index: -1;
         @content;
     }
