@@ -5,10 +5,11 @@ import { useState, useEffect } from 'react'
 
 
 export default function Home() {
-  const [quantityData, setQuantity] = useState([{ingredient: "", quantity: 0, cost: 0}]);
+  const [quantityData, setQuantity] = useState([{ingredient: "test", quantity: 0, cost: 0}]);
     
   const AddQuantity = () =>{
     setQuantity([...quantityData, {ingredient: "", quantity: 0, cost: 0}])
+    localStorage.setItem('data', JSON.stringify(quantityData));
   }
   /* Start to look into an API to get a stand in value for products*/
   const Remove = (index) =>{
@@ -38,9 +39,10 @@ export default function Home() {
     list[index][name] = value
     setQuantity(list) 
   }
-  useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(quantityData));
-  }, [quantityData]);
+ 
+
+  let localData = JSON.parse(localStorage.getItem("data") || "[]");
+  console.log(localData)
 
   return (
     <div className={styles.container}>
@@ -77,6 +79,13 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <div className='inventory-container'>
+          {localData.map((ingredient, index) => (
+            <div className = "inventory-item" key= {index}>
+              <p>{ingredient.ingredient}</p>
+            </div>
+          ))}
+        </div>
         <Calculator data = {quantityData}/>
      </main>
 
@@ -103,4 +112,14 @@ Extract data from a recipe
 find recipe with a list of ingredients
 Have an online inventory of all your groceries
 Nutrional value calculator for dishes
+
+Redesign
+keep an inventory in local storage
+and in a separate part drag and drop ingredients based on the recipe
+
+Bonus:
+cross reference ingredients with recipe to find missing ingredients and how many portions you can make
+
+
+
 */
