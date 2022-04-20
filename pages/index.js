@@ -121,5 +121,7 @@ Bonus:
 cross reference ingredients with recipe to find missing ingredients and how many portions you can make
 
 
+SCRAP THE WEBSITE AND MAKE IT AN APP IT JUST MAKES MORE SENSE
+
 
 */
